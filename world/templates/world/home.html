@@ -1,0 +1,17 @@
+{% extends "world/base.html" %}
+{% block content %}
+    {% for location in locations %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ location.lesson_num }}</a>
+              <small class="text-muted">{{ location.date_posted }}</small>
+            </div>
+            <h2>
+                <a class="article-title" href="#">{{ location.title }}</a>
+            </h2>
+            <p class="article-content">{{ location.content }}</p>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
