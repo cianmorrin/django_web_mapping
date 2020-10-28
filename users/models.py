@@ -1,3 +1,9 @@
-from django.db import models
+from django.contrib.gis.db import models
 
-# Create your models here.
+
+class Profile(models.Model):
+
+
+    # Returns the string representation of the model.
+    def __str__(self):
+        return self.name
