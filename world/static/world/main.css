@@ -82,3 +82,16 @@ a.article-title:hover {
 .account-heading {
   font-size: 2.5rem;
 }
+
+.leaflet-container {
+  width:  1200px;
+  height: 600px;
+}
+
+#specialbigmap {
+  height: 800px;
+}
+
+.django-leaflet-raw-textarea {
+  width: 100%;
+}

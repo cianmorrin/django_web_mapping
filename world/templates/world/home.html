@@ -1,17 +1,13 @@
 {% extends "world/base.html" %}
 {% block content %}
-    {% for location in locations %}
-        <article class="media content-section">
-          <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="#">{{ location.lesson_num }}</a>
-              <small class="text-muted">{{ location.date_posted }}</small>
-            </div>
-            <h2>
-                <a class="article-title" href="#">{{ location.title }}</a>
-            </h2>
-            <p class="article-content">{{ location.content }}</p>
-          </div>
-        </article>
-    {% endfor %}
+    {% load leaflet_tags %}
+    <head>
+        {% leaflet_js %}
+        {% leaflet_css %}
+    </head>
+    <body>
+        <div class="leaflet-container">
+            {% leaflet_map "yourmap" %}
+        </div>
+    </body>
 {% endblock content %}
