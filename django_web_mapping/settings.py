@@ -11,8 +11,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+import socket
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -90,6 +92,27 @@ DATABASES = {
         'PORT': 25432
         }
 }
+
+if socket.gethostname() =="Cians-MacBook-Pro.local":
+    DATABASES["default"]["HOST"] = "localhost"
+    DATABASES["default"]["PORT"] = 25432
+else:
+    DATABASES["default"]["HOST"] = f"django-web-mapping-postgis"
+    DATABASES["default"]["PORT"] = 5432
+
+# Set DEPLOY_SECURE to True only for LIVE deployment
+if docker_config.DEPLOY_SECURE:
+    DEBUG = False
+    TEMPLATES[0]["OPTIONS"]["debug"] = False
+    # ALLOWED_HOSTS = ['.your-domain-name.xyz', 'localhost',]
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+else:
+    DEBUG = True
+    TEMPLATES[0]["OPTIONS"]["debug"] = True
+    ALLOWED_HOSTS = ['*', ]
+    CSRF_COOKIE_SECURE = False
+    SESSION_COOKIE_SECURE = False
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
