@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = 'fvuihgviuhgrf3r3f14refwuivbqeirfvhfqor3qb7143rf31'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -106,7 +106,7 @@ else:
     DATABASES["default"]["PORT"] = 5432
     DEBUG = False
     TEMPLATES[0]["OPTIONS"]["debug"] = False
-    # ALLOWED_HOSTS = ['.your-domain-name.xyz', 'localhost',]
+    ALLOWED_HOSTS = ['.cianmorrin.xyz', 'localhost']
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
 
