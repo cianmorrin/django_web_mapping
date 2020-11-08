@@ -11,8 +11,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+import socket
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -20,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'i#y&2x2c2v@^465!=bo))0!)mlq-250n_lv1g1d501+&81bx@x'
+SECRET_KEY = 'fvuihgviuhgrf3r3f14refwuivbqeirfvhfqor3qb7143rf31'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -90,6 +92,25 @@ DATABASES = {
         'PORT': 25432
         }
 }
+
+if socket.gethostname() == "Cians-MacBook-Pro.local":
+    DATABASES["default"]["HOST"] = "localhost"
+    DATABASES["default"]["PORT"] = 25432
+    DEBUG = True
+    TEMPLATES[0]["OPTIONS"]["debug"] = True
+    ALLOWED_HOSTS = ['*', ]
+    # CSRF_COOKIE_SECURE = False
+    # SESSION_COOKIE_SECURE = False
+else:
+    DATABASES["default"]["HOST"] = "webmapinternal"
+    DATABASES["default"]["PORT"] = 5432
+    DEBUG = True
+    TEMPLATES[0]["OPTIONS"]["debug"] = False
+    ALLOWED_HOSTS = ['.cianmorrin.xyz', 'localhost']
+    # CSRF_COOKIE_SECURE = True
+    # SESSION_COOKIE_SECURE = True
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
