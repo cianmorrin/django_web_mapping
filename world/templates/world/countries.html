@@ -1,5 +1,14 @@
 {% extends "world/base.html" %}
 {% block content %}
+<style>
+#myDIV {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  background-color: lightblue;
+  margin-top: 20px;
+}
+</style>
     {% for country in countries %}
       <div class="container">
         <article class="media content-section">
@@ -8,9 +17,13 @@
               <a class="mr-2" href="#">{{ country.iso3 }}</a>
             </div>
               <h2><a class="article-title" href="#">{{ country.name }}</a></h2>
-              <p class="article-content">Area : {{ country.area }}</p>
+              <p>Area : {{ country.area }}</p>
+              <p>Longitude : {{ country.lon }} ;  Latitude : {{ country.lat }}</p>
           </div>
+
         </article>
+
+
       </div>
     {% endfor %}
 {% endblock content %}
