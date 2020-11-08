@@ -103,7 +103,7 @@ if socket.gethostname() == "Cians-MacBook-Pro.local":
 else:
     DATABASES["default"]["HOST"] = "webmapinternal"
     DATABASES["default"]["PORT"] = 5432
-    DEBUG = True
+    DEBUG = False
     TEMPLATES[0]["OPTIONS"]["debug"] = False
     ALLOWED_HOSTS = ['.cianmorrin.xyz', 'localhost']
 
