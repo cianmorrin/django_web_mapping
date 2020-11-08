@@ -22,7 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'fvuihgviuhgrf3r3f14refwuivbqeirfvhfqor3qb7143rf31'
+key = Path('key.txt').read_text()
+SECRET_KEY = key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -99,16 +100,12 @@ if socket.gethostname() == "Cians-MacBook-Pro.local":
     DEBUG = True
     TEMPLATES[0]["OPTIONS"]["debug"] = True
     ALLOWED_HOSTS = ['*', ]
-    # CSRF_COOKIE_SECURE = False
-    # SESSION_COOKIE_SECURE = False
 else:
     DATABASES["default"]["HOST"] = "webmapinternal"
     DATABASES["default"]["PORT"] = 5432
     DEBUG = True
     TEMPLATES[0]["OPTIONS"]["debug"] = False
     ALLOWED_HOSTS = ['.cianmorrin.xyz', 'localhost']
-    # CSRF_COOKIE_SECURE = True
-    # SESSION_COOKIE_SECURE = True
 
 
 
@@ -150,7 +147,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 CRISPY_FAIL_SILENTLY = not DEBUG

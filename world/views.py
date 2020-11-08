@@ -1,28 +1,17 @@
 from django.shortcuts import render
-
-locations = [
-    {
-        'author': 'CoreyMS',
-        'title': 'location 1',
-        'content': 'First post content',
-        'date_posted': 'August 27, 2018'
-    },
-    {
-        'author': 'Jane Doe',
-        'title': 'location 2',
-        'content': 'Second post content',
-        'date_posted': 'August 28, 2018'
-    }
-]
+from django.contrib.auth.decorators import login_required
+from .models import WorldBorder
 
 
+@login_required
 def home(request):
+    return render(request, 'world/home.html')
+
+
+@login_required
+def friends(request):
     context = {
-        'locations': locations
+        'countries': WorldBorder.objects.all()
     }
-    return render(request, 'world/home.html', context)
-
-
-def about(request):
-    return render(request, 'world/about.html', {'title': 'About'})
+    return render(request, 'world/countries.html', context)
 

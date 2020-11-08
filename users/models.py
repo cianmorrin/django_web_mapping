@@ -17,12 +17,3 @@ class Profile(models.Model):
     # Returns the string representation of the model.
     def __str__(self):
         return f"{self.user}"
-
-
-@receiver(post_save, sender=User)
-def manage_user_profile(sender, instance, created, **kwargs):
-    try:
-        my_profile = instance.profile
-        my_profile.save()
-    except Profile.DoesNotExist:
-        Profile.objects.create(user=instance)
