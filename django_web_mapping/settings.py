@@ -99,16 +99,12 @@ if socket.gethostname() == "Cians-MacBook-Pro.local":
     DEBUG = True
     TEMPLATES[0]["OPTIONS"]["debug"] = True
     ALLOWED_HOSTS = ['*', ]
-    # CSRF_COOKIE_SECURE = False
-    # SESSION_COOKIE_SECURE = False
 else:
     DATABASES["default"]["HOST"] = "webmapinternal"
     DATABASES["default"]["PORT"] = 5432
     DEBUG = True
     TEMPLATES[0]["OPTIONS"]["debug"] = False
     ALLOWED_HOSTS = ['.cianmorrin.xyz', 'localhost']
-    # CSRF_COOKIE_SECURE = True
-    # SESSION_COOKIE_SECURE = True
 
 
 
