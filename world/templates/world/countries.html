@@ -1,0 +1,16 @@
+{% extends "world/base.html" %}
+{% block content %}
+    {% for country in countries %}
+      <div class="container">
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ country.iso3 }}</a>
+            </div>
+              <h2><a class="article-title" href="#">{{ country.name }}</a></h2>
+              <p class="article-content">Area : {{ country.area }}</p>
+          </div>
+        </article>
+      </div>
+    {% endfor %}
+{% endblock content %}

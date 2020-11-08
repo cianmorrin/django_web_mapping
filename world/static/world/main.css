@@ -2,6 +2,7 @@ body {
   background: #fafafa;
   color: #333333;
   margin-top: 6rem;
+  margin-bottom: 5rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -52,6 +53,7 @@ ul {
   margin-bottom: 20px;
 }
 
+
 .article-title {
   color: #444444;
 }
@@ -69,6 +71,13 @@ a.article-title:hover {
   height: 65px;
   width: 65px;
   margin-right: 16px;
+  -webkit-transition: -webkit-transform .8s ease-in-out;
+          transition:         transform .8s ease-in-out;
+}
+
+.article-img:hover {
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
 }
 
 .article-metadata {

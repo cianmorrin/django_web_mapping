@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm
 from . import models
 from django.contrib.gis.geos import Point
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
 
 def register(request):
@@ -22,29 +23,40 @@ def register(request):
 
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST,
+                                   request.FILES,
+                                   instance=request.user.profile)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Your account has been updated!')
+            return redirect('profile')
+
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {
+        'u_form': u_form,
+        'p_form': p_form
+    }
+
+    return render(request, 'users/profile.html', context)
 
 
 @login_required
 def update_location(request):
     try:
-        print('in update location')
         user = request.user
-        print(user)
         user_profile = models.Profile.objects.get(user__username=user)
-        print(user_profile)
         if not user_profile:
             raise ValueError("Can't get User details")
-
-        print('user_profile')
-        print(user_profile)
-
+            
         point = request.POST["point"].split(",")
         point = [float(part) for part in point]
         point = Point(point, srid=4326)
-
-        print('point')
-        print(point)
 
         user_profile.last_location = point
         user_profile.save()
