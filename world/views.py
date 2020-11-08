@@ -23,6 +23,6 @@ def home(request):
     return render(request, 'world/home.html', context)
 
 
-def about(request):
-    return render(request, 'world/about.html', {'title': 'About'})
+def friends(request):
+    return render(request, 'world/friends.html', {'title': 'Friends'})
 

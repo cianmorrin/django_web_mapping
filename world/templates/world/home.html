@@ -8,10 +8,10 @@
     <head>
         {% leaflet_js %}
         {% leaflet_css %}
-        {% block head_title %}{% trans "Map Page" %}{% endblock %}
+        {% block head_title %}{% endblock %}
         {% block extra_header %}
             <style>
-                #map {width: 70vw;height: 80vh;}
+                #map {width: 80vw;height: 81vh;}
             </style>
         {% endblock %}
 
@@ -73,7 +73,6 @@
         }
 
         function setMapToCurrentLocation(map, pos) {
-            console.log("In setMapToCurrentLocation.");
             let myLatLon = L.latLng(pos.coords.latitude, pos.coords.longitude);
             map.flyTo(myLatLon, 16);
             if (locationMarker) {
@@ -102,16 +101,13 @@
                     point: locString
                 }
             }).done(function (data, status, xhr) {
-                console.log(data["message"])
                 var originalMsg = $(".toast-body").html();
                 $(".toast-body").html(originalMsg + "<br/>Updated database<br/>" + data["message"]);
 
             }).fail(function (xhr, status, error) {
-                console.log('hi' + error);
                 var originalMsg = $(".toast-body").html();
                 $(".toast-body").html(originalMsg + "<br/>" + error);
             }).always(function () {
-                console.log("find_loc_ed finished");
                 $(".toast").toast('show');
             });
         }
