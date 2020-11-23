@@ -167,7 +167,7 @@ LOGIN_REDIRECT_URL = 'world-home'
 LOGIN_URL = 'login'
 
 PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'templates', 'serviceworker.js')
-PWA_APP_NAME = 'django_web_mapping'
+PWA_APP_NAME = 'DjangoWebMap'
 PWA_APP_DESCRIPTION = "Web Mapping CA2"
 PWA_APP_THEME_COLOR = 'black'
 PWA_APP_BACKGROUND_COLOR = 'white'
@@ -201,4 +201,5 @@ PWA_APP_SPLASH_SCREEN = [
     }
 ]
 PWA_APP_DIR = 'ltr'
-PWA_APP_LANG = 'en-US'
+PWA_APP_LANG = 'en-UK'
+PWA_APP_DEBUG_MODE = False
