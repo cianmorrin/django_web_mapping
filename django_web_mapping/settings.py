@@ -166,31 +166,38 @@ LEAFLET_CONFIG = {
 LOGIN_REDIRECT_URL = 'world-home'
 LOGIN_URL = 'login'
 
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'templates', 'serviceworker.js')
 PWA_APP_NAME = 'django_web_mapping'
 PWA_APP_DESCRIPTION = "Web Mapping CA2"
-PWA_APP_THEME_COLOR = '#0A0302'
-PWA_APP_BACKGROUND_COLOR = '#ffffff'
+PWA_APP_THEME_COLOR = 'black'
+PWA_APP_BACKGROUND_COLOR = 'white'
 PWA_APP_DISPLAY = 'standalone'
 PWA_APP_SCOPE = '/'
-PWA_APP_ORIENTATION = 'any'
+PWA_APP_ORIENTATION = 'portrait'
 PWA_APP_START_URL = '/'
 PWA_APP_STATUS_BAR_COLOR = 'default'
 PWA_APP_ICONS = [
     {
-        'src': '/static/images/globe-icon.png',
-        'sizes': '160x160'
+        'src': '/static/images/globe-icon192.png',
+        'type': 'image/png',
+        'sizes': '192x192',
+        'purpose': 'any maskable'
     }
 ]
 PWA_APP_ICONS_APPLE = [
     {
-        'src': '/static/images/globe-icon.png',
-        'sizes': '160x160'
+        'src': '/static/images/globe-icon192.png',
+        'type': 'image/png',
+        'sizes': '192x192',
+        'purpose': 'any maskable'
     }
 ]
 PWA_APP_SPLASH_SCREEN = [
     {
         'src': '/static/images/icons/globe-icon.png',
-        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
+        'type': 'image/png',
+        'sizes': '512x512',
+        'purpose': 'any maskable'
     }
 ]
 PWA_APP_DIR = 'ltr'
