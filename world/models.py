@@ -1,7 +1,8 @@
 from django.contrib.gis.db import models
 from django.utils import timezone
 from users.models import Profile
-
+from django.contrib.auth.models import User
+from django.urls import reverse
 
 class WorldBorder(models.Model):
     # Regular Django fields corresponding to the attributes in the
@@ -24,3 +25,16 @@ class WorldBorder(models.Model):
     # Returns the string representation of the model.
     def __str__(self):
         return self.name
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    date_posted = models.DateTimeField(default=timezone.now)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('post-detail', kwargs={'pk': self.pk})
