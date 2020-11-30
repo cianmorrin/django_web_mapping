@@ -32,7 +32,7 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'dream_holiday', 'reason']
     # add success url and redirect to home page
 
     def form_valid(self, form):
