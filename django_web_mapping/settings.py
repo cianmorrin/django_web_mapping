@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'crispy_forms',
     'leaflet',
+    'pwa',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -149,7 +150,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
 
-
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 CRISPY_FAIL_SILENTLY = not DEBUG
 
@@ -165,3 +165,41 @@ LEAFLET_CONFIG = {
 
 LOGIN_REDIRECT_URL = 'world-home'
 LOGIN_URL = 'login'
+
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'templates', 'serviceworker.js')
+PWA_APP_NAME = 'DjangoWebMap'
+PWA_APP_DESCRIPTION = "Web Mapping CA2"
+PWA_APP_THEME_COLOR = 'black'
+PWA_APP_BACKGROUND_COLOR = 'white'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'portrait'
+PWA_APP_START_URL = '/'
+PWA_APP_STATUS_BAR_COLOR = 'default'
+PWA_APP_ICONS = [
+    {
+        'src': '/static/images/globe-icon192.png',
+        'type': 'image/png',
+        'sizes': '192x192',
+        'purpose': 'any maskable'
+    }
+]
+PWA_APP_ICONS_APPLE = [
+    {
+        'src': '/static/images/globe-icon192.png',
+        'type': 'image/png',
+        'sizes': '192x192',
+        'purpose': 'any maskable'
+    }
+]
+PWA_APP_SPLASH_SCREEN = [
+    {
+        'src': '/static/images/icons/globe-icon.png',
+        'type': 'image/png',
+        'sizes': '512x512',
+        'purpose': 'any maskable'
+    }
+]
+PWA_APP_DIR = 'ltr'
+PWA_APP_LANG = 'en-UK'
+PWA_APP_DEBUG_MODE = False
