@@ -120,3 +120,39 @@ a.article-title:hover {
 .django-leaflet-raw-textarea {
   width: 100%;
 }
+
+.cell {
+  width:33%;
+  height:30vh;
+  display:inline-block;
+  margin:0 15px;
+  border: 3px solid #c7254e;
+  border-radius:8px;
+  overflow:hidden;
+  text-align:center;"
+}
+
+.flickity-prev-next-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  background: #333;
+}
+.flickity-prev-next-button:hover {
+  background: #F90;
+}
+/* arrow color */
+.flickity-prev-next-button .arrow {
+  fill: white;
+}
+.flickity-prev-next-button.no-svg {
+  color: white;
+}
+/* position outside */
+.flickity-prev-next-button.previous {
+  left: -40px;
+}
+.flickity-prev-next-button.next {
+  right: -40px;
+  float: right;
+}

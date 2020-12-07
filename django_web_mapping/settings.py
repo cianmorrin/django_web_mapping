@@ -194,7 +194,7 @@ PWA_APP_ICONS_APPLE = [
 ]
 PWA_APP_SPLASH_SCREEN = [
     {
-        'src': '/static/images/icons/globe-icon.png',
+        'src': '/static/images/globe-icon.png',
         'type': 'image/png',
         'sizes': '512x512',
         'purpose': 'any maskable'
