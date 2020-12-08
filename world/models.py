@@ -4,6 +4,7 @@ from users.models import Profile
 from django.contrib.auth.models import User
 from django.urls import reverse
 
+
 class WorldBorder(models.Model):
     # Regular Django fields corresponding to the attributes in the
     # world borders shapefile.
@@ -39,3 +40,14 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})
+
+
+class Flight(models.Model):
+    airport_location = models.CharField('Origin Place', max_length=50)
+    airport_code = models.CharField('Origin Airport Code', max_length=10)
+    airport_lat = models.FloatField()
+    airport_lon = models.FloatField()
+
+    def __str__(self):
+        return self.airport_location
+

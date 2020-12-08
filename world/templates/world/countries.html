@@ -1,19 +1,43 @@
 {% extends "world/base.html" %}
 {% block content %}
-<style>
-</style>
-    {% for country in countries %}
-      <div class="container">
-        <article class="media content-section">
-          <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="#">{{ country.iso3 }}</a>
-            </div>
-              <h2><a class="article-title" href="#">{{ country.name }}</a></h2>
-              <p>Area : {{ country.area }}</p>
-              <p>Longitude : {{ country.lon }} ;  Latitude : {{ country.lat }}</p>
-          </div>
-        </article>
-      </div>
+    <div class="container">
+    <div class="content-section">
+    <form method="POST" >
+        {% csrf_token %}
+
+            <legend class="border-bottom mb-4">Check your flights</legend>
+             <select name="airportin" class="airports-select">
+                 <option value="" selected disabled hidden>Choose origin</option>
+                 {% for airport in airports %}
+                    <option value="{{ airport.airport_code }}">{{ airport }}</option>
+                {% endfor %}
+            </select>
+            <select name="airportout" class="airports-select">
+                <option value="" selected disabled hidden>Choose destination</option>
+                {% for airport in airports %}
+                    <option value="{{ airport.airport_code }}">{{ airport }}</option>
+                {% endfor %}
+            </select>
+            <input type="date" id="datePicker" name="date" value="date">
+
+
+            <button class="btn btn-outline-info" type="submit" onsubmit="return false">Check flight</button>
+
+
+    </form>
+
+    </div>
+    </div>
+
+    {% for quote in quotes %}
+        <div class="container">
+            <article class="media content-section">
+                <div class="media-body">
+                    <p> {{ quote }}</p>
+                </div>
+            </article>
+        </div>
     {% endfor %}
+
 {% endblock content %}
+
