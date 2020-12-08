@@ -83,7 +83,7 @@ def flights(request):
             'airports': Flight.objects.all(),
             'quotes': quotes,
         }
-    return render(request, 'world/countries.html', context)
+    return render(request, 'world/flights.html', context)
 
 
 

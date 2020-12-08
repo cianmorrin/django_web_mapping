@@ -6,17 +6,17 @@
         {% csrf_token %}
         <div class="form-group">
 
-            <legend class="border-bottom mb-4">Check your flights</legend>
-            <div class="form-row">
-                <div class="col">
+            <legend class="border-bottom mb-4">Let the journey begin</legend>
+
+            <div id="flight-criteria">
+
              <select name="airportin" class="form-control">
                  <option value="" selected disabled hidden>Choose origin</option>
                  {% for airport in airports %}
                     <option value="{{ airport.airport_code }}">{{ airport }}</option>
                 {% endfor %}
             </select>
-                </div>
-                <div class="col">
+
 
             <select name="airportout" class="form-control">
                 <option value="" selected disabled hidden>Choose destination</option>
@@ -25,14 +25,15 @@
                 {% endfor %}
             </select>
 
-            </div>
+
                 <div class="col">
-            <input type="date" id="datePicker" name="date" value="date">
+                    <input type="date" id="datePicker" name="date" value="date">
                 </div>
+
+                    <button class="btn btn-outline-info" type="submit" onsubmit="return false">Search flights</button>
+
             </div>
-
-            <button class="btn btn-outline-info" type="submit" onsubmit="return false">Check flight</button>
-
+        </div>
         </div>
     </form>
 

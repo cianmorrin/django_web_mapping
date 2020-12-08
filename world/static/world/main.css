@@ -157,6 +157,24 @@ a.article-title:hover {
   float: right;
 }
 
+#flight-criteria {
+  display: inline-flex;
+}
+
+#datePicker {
+  line-height: inherit;
+  color: #495057;
+  border-color: lightgrey;
+  padding: 5px 5px 5px 35px;
+  border-radius: 13px;
+  5px 5px 5px 35px
+}
+
+.form-control{
+  margin-left: 10px;
+  max-width: 30%;
+}
+
 @media only screen and (max-width: 991px) {
   .cell {
     width:100%
@@ -165,4 +183,17 @@ a.article-title:hover {
   #hol-reason {
     display: none;
   }
+
+  #flight-criteria {
+    display: inline-block;
+  }
+  .form-control{
+    max-width: 100%;
+    margin-left: 0px;
+  }
+
+  #datePicker {
+    margin-left: -15px;
+  }
+
 }
