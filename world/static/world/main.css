@@ -20,7 +20,7 @@ ul {
 .site-header .navbar-nav .nav-link {
     color: #ece8e8e8;
     font-size: large;
-    font-family: monaco
+  font-family: monaco, sans-serif
 }
 
 .site-header .navbar-nav .nav-link:hover {
@@ -39,7 +39,7 @@ ul {
   width: 100%;
   background-color: #020202e0;
   font-size: medium;
-  font-family: monaco;
+  font-family: monaco, sans-serif;
   color: #ece8e8e8;
   text-align: center;
   height: 4.5%;
@@ -167,12 +167,25 @@ a.article-title:hover {
   border-color: lightgrey;
   padding: 5px 5px 5px 35px;
   border-radius: 13px;
-  5px 5px 5px 35px
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
-.form-control{
+.form-control-flight-form {
   margin-left: 10px;
   max-width: 30%;
+  display: block;
+  height: calc(1.5em + .75rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 @media only screen and (max-width: 991px) {
@@ -187,13 +200,29 @@ a.article-title:hover {
   #flight-criteria {
     display: inline-block;
   }
-  .form-control{
+  .form-control-flight-form{
     max-width: 100%;
     margin-left: 0px;
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-bottom: 4px;
   }
 
   #datePicker {
-    margin-left: -15px;
+    margin-top: 4px;
+    margin-left: 0px;
+    margin-bottom: 4px;
   }
 
 }

@@ -10,7 +10,7 @@
 
             <div id="flight-criteria">
 
-             <select name="airportin" class="form-control">
+             <select name="airportin" class="form-control-flight-form">
                  <option value="" selected disabled hidden>Choose origin</option>
                  {% for airport in airports %}
                     <option value="{{ airport.airport_code }}">{{ airport }}</option>
@@ -18,7 +18,7 @@
             </select>
 
 
-            <select name="airportout" class="form-control">
+            <select name="airportout" class="form-control-flight-form">
                 <option value="" selected disabled hidden>Choose destination</option>
                 {% for airport in airports %}
                     <option value="{{ airport.airport_code }}">{{ airport }}</option>
@@ -26,19 +26,27 @@
             </select>
 
 
-                <div class="col">
-                    <input type="date" id="datePicker" name="date" value="date">
-                </div>
 
-                    <button class="btn btn-outline-info" type="submit" onsubmit="return false">Search flights</button>
+                    <input type="date" id="datePicker" name="date" value="date">
+
+
+                    <button class="btn btn-outline-info" type="submit">Search flights</button>
 
             </div>
         </div>
-        </div>
+
     </form>
 
     </div>
     </div>
+    <div class="container">
+        <article class="media content-section">
+            <div class="media-body">
+                <h3> {{ prettystring }} </h3>
+            </div>
+        </article>
+    </div>
+
 
     {% for quote in quotes %}
         <div class="container">
