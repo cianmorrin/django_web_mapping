@@ -15,7 +15,6 @@
             </style>
         {% endblock %}
         <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-{#        <link rel="stylesheet" type="text/css" href="{% static 'world/main.css' %}">#}
 
     </head>
     <body>
@@ -88,8 +87,6 @@
         let HOST = location.protocol + "//" + location.host;
         let locationMarker;
         let circle;
-        let latGlob = 0.0;
-        let lonGlob = 0.0;
         {#$("#map").css({#}
         {#    "width": "100%",#}
         {#    "height": $(document).height() - ($(".site-header").height() + $("#footer").height() + 45)});#}
@@ -105,8 +102,6 @@
             var lng = longitude;
             var newLatLng = new L.latLng(lat, lng);
             marker.setLatLng(newLatLng);
-            latGlob = latitude;
-            lonGlob = longitude;
             globMap.flyTo(newLatLng, 5)
         }
 

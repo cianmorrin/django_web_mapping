@@ -74,8 +74,12 @@ def flights(request):
     quotes = []
     prettystring = ''
     if request.method == 'POST':
-        loc_from = request.POST.get('airportin')
-        loc_to = request.POST.get('airportout')
+        loc_from_arr = request.POST.get('airportorigin')
+        loc_from = loc_from_arr.split(",")
+        loc_from = loc_from[0]
+        loc_to_arr = request.POST.get('airportdestination')
+        loc_to = loc_to_arr.split(",")
+        loc_to = loc_to[0]
         date = request.POST.get('date')
         prettystring, quotes = get_quote(loc_from, loc_to, date)
         if len(quotes) == 0:
