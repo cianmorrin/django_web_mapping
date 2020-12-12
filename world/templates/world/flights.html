@@ -86,7 +86,6 @@
         function map_init_basic (map, options) {
             marker = L.marker([53.5, -8.5], 5).addTo(map);
             marker2 = L.marker([53.5, -8.5], 5).addTo(map);
-            console.log(marker);
             polyline = L.polyline([marker._latlng,marker2._latlng], {
                 color: 'red',
                 weight: 3,
@@ -116,11 +115,6 @@
             marker.setLatLng(y);
             polyline.setLatLngs([y,marker2._latlng]);
         }
-
-
-
-
-
 
     </script>
 

@@ -2,7 +2,6 @@ body {
   background: #fafafa;
   color: #333333;
   margin-top: 6rem;
-  margin-bottom: 5rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -31,6 +30,10 @@ ul {
   font-weight: 500;
 }
 
+#map {
+  width: 100%;
+  height: 52vh;
+}
 
 .site-footer .footer-bar {
   position: fixed;
@@ -188,9 +191,14 @@ a.article-title:hover {
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 480px) {
   .cell {
     width:100%
+  }
+
+  #map {
+    width: 100%;
+    height: 47vh;
   }
 
   #hol-reason {
