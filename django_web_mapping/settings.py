@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'leaflet',
     'pwa',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -203,3 +204,9 @@ PWA_APP_SPLASH_SCREEN = [
 PWA_APP_DIR = 'ltr'
 PWA_APP_LANG = 'en-UK'
 PWA_APP_DEBUG_MODE = False
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}

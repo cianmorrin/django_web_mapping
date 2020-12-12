@@ -1,5 +1,6 @@
 {% extends "world/base.html" %}
 {% block content %}
+    <div class="container">
     <article class="media content-section">
         <div class="media-body">
             <div class="article-metadata">
@@ -13,7 +14,9 @@
                 {% endif %}
             </div>
             <h2 class="article-title">{{ object.title }}</h2>
-            <p class="article-content">{{ object.content }}</p>
+            <h5 class="article-title">{{ object.dream_holiday }}</h5>
+            <p class="article-content">{{ object.reason }}</p>
         </div>
     </article>
+    </div>
 {% endblock content %}

@@ -7,8 +7,9 @@ from django.views.generic import (
     DeleteView
 )
 from django.contrib.auth.decorators import login_required
-from .models import WorldBorder, Post
+from .models import WorldBorder, Post, Flight
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin  # this is needed for class views, can't use login required
+from world.quotes import get_quote
 
 
 @login_required
@@ -33,7 +34,7 @@ class PostDetailView(DetailView):
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'dream_holiday', 'reason']
-    # add success url and redirect to home page
+    success_url = '/'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -43,7 +44,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     fields = ['title', 'dream_holiday', 'reason']
-    # add success url and redirect to home page
+    success_url = '/'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -67,11 +68,24 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
+
 @login_required
-def friends(request):
+def flights(request):
+    quotes = []
+    prettystring = ''
+    if request.method == 'POST':
+        loc_from = request.POST.get('airportin')
+        loc_to = request.POST.get('airportout')
+        date = request.POST.get('date')
+        prettystring, quotes = get_quote(loc_from, loc_to, date)
+        if len(quotes) == 0:
+            quotes.append('No flights for your choice')
     context = {
-        'countries': WorldBorder.objects.all()
-    }
-    return render(request, 'world/countries.html', context)
+            'airports': Flight.objects.all(),
+            'quotes': quotes,
+            'prettystring': prettystring,
+        }
+    return render(request, 'world/flights.html', context)
+
 
 

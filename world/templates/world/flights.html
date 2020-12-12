@@ -1,0 +1,62 @@
+{% extends "world/base.html" %}
+{% block content %}
+    <div class="container">
+    <div class="content-section">
+    <form method="POST" >
+        {% csrf_token %}
+        <div class="form-group">
+
+            <legend class="border-bottom mb-4">Let the journey begin</legend>
+
+            <div id="flight-criteria">
+
+             <select name="airportin" class="form-control-flight-form">
+                 <option value="" selected disabled hidden>Choose origin</option>
+                 {% for airport in airports %}
+                    <option value="{{ airport.airport_code }}">{{ airport }}</option>
+                {% endfor %}
+            </select>
+
+
+            <select name="airportout" class="form-control-flight-form">
+                <option value="" selected disabled hidden>Choose destination</option>
+                {% for airport in airports %}
+                    <option value="{{ airport.airport_code }}">{{ airport }}</option>
+                {% endfor %}
+            </select>
+
+
+
+                    <input type="date" id="datePicker" name="date" value="date">
+
+
+                    <button class="btn btn-outline-info" type="submit">Search flights</button>
+
+            </div>
+        </div>
+
+    </form>
+
+    </div>
+    </div>
+    <div class="container">
+        <article class="media content-section">
+            <div class="media-body">
+                <h3> {{ prettystring }} </h3>
+            </div>
+        </article>
+    </div>
+
+
+    {% for quote in quotes %}
+        <div class="container">
+            <article class="media content-section">
+                <div class="media-body">
+                    <p> {{ quote }}</p>
+                </div>
+            </article>
+        </div>
+    {% endfor %}
+
+{% endblock content %}
+
