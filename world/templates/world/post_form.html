@@ -5,6 +5,7 @@
         <div class="content-section">
             <form method="POST">
                 {% csrf_token %}
+                <!-- form to create a post -->
                 <fieldset class="form-group">
                     <legend class="border-bottom mb-4">Post your Dream Holiday</legend>
                     {{ form|crispy }}

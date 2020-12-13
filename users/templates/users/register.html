@@ -6,6 +6,7 @@
         <div class="content-section">
             <form method="POST">
              {% csrf_token %}
+                <!-- registration form  -->
                 <fieldset class="form-group">
                     <legend class="border-bottom mb-4">Join Today</legend>
                     {{ form|crispy }}
