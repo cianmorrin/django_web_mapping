@@ -79,7 +79,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 @login_required
 def flights(request):
     quotes = []
-    prettystring = ''
+    source_dest = ''
     if request.method == 'POST':
         loc_from_arr = request.POST.get('airportorigin')
         print(loc_from_arr)
@@ -98,13 +98,13 @@ def flights(request):
             loc_to = loc_to[0]
 
         date = request.POST.get('date')
-        prettystring, quotes = get_quote(loc_from, loc_to, date)
+        source_dest, quotes = get_quote(loc_from, loc_to, date)
         if len(quotes) == 0:
             quotes.append('No flights for your choice')
     context = {
         'airports': Flight.objects.all(),
         'quotes': quotes,
-        'prettystring': prettystring,
+        'source_dest': source_dest,
         'title': 'Flights'
     }
     return render(request, 'world/flights.html', context)

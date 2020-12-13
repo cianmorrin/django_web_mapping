@@ -2,11 +2,14 @@ import requests
 from skyscannerkey import headers
 
 
+# this function retrieves the data from the Sky Scanner api and parses the json result
+# to produce an array of strings to be returned to the view
 def get_quote(location_from, location_to, date):
 
     url = "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/" \
           + str(location_from) + "/" + str(location_to) + "/" + str(date)
 
+    # headers for sky scanner api key and host is hidden
     response = requests.request("GET", url, headers=headers)
 
     j = response.json()
@@ -41,12 +44,12 @@ def get_quote(location_from, location_to, date):
             elif place["PlaceId"] == dest_id:
                 pretty_string_end = str(place["Name"]) + "(" + str(place["IataCode"]) + ") "
 
-        newdate = date[8] + date[9] + "/" + date[5] + date[6] + "/" + date[0] + date[1] + date[2] + date[3]
+        new_date = date[8] + date[9] + "/" + date[5] + date[6] + "/" + date[0] + date[1] + date[2] + date[3]
 
         if len(pretty_string_start) > 0:
-            prettystring = pretty_string_start + pretty_string_end + "on " + newdate
+            pretty_string = pretty_string_start + pretty_string_end + "on " + new_date
         else:
-            prettystring = location_from[:3] + " to " + location_to[:3] + " on " + newdate
-        return prettystring, flight_quotes
+            pretty_string = location_from[:3] + " to " + location_to[:3] + " on " + new_date
+        return pretty_string, flight_quotes
     else:
         return '', []

@@ -224,16 +224,13 @@ a.article-title:hover {
 
 .media-body.flights {
   display: flex;
-
-
 }
 
 #flight-quotes {
-  margin-top: 0px;
+  margin-top: 5px;
   margin-bottom: 2px;
   margin-left: 10px;
-  font-size: 24px;
-
+  font-size: 18px;
 }
 #plane-icon {
   height: 40px;
@@ -300,8 +297,6 @@ a.article-title:hover {
     margin-bottom: 6px;
   }
 
-
-
 }
 
 @media only screen and (max-width: 1024px) {
@@ -364,5 +359,5 @@ a.article-title:hover {
     margin-left: 0px;
     margin-bottom: 6px;
   }
-
 }
+
