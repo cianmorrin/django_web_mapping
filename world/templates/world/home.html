@@ -23,7 +23,7 @@
                             <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
                             <p class="article-content">{{ post.dream_holiday.name }}</p>
                             <p id="hol-reason" class="article-content">{{ post.reason }}</p>
-                            <button class="btn btn-outline-info" onclick="updateLatLon('{{ post.dream_holiday.lat }}', '{{ post.dream_holiday.lon }}')">View On Map</button>
+                            <button class="btn btn-outline-info" onclick="updateLatLon(false, '{{ post.dream_holiday.lat }}', '{{ post.dream_holiday.lon }}', '{{ post.author }}','{{ post.dream_holiday.name }}','{{ post.dream_holiday.area }}')">View On Map</button>
                         </div>
                     </article>
                 </div>
@@ -37,15 +37,32 @@
         wrapAround: true,
         freeScroll: true
     })
+    function getPosition() {
+        return new Promise((res, rej) => {
+            navigator.geolocation.getCurrentPosition(res, rej);
+        });
+    }
+
     function map_init_basic (map, options) {
         marker = L.marker([53.5, -8.5], 5).addTo(map);
+        getPosition().then(pos => updateLatLon(true, pos.coords.latitude, pos.coords.longitude, "You are here!"));
         globMap = map;
     }
-    function updateLatLon(latitude,longitude) {
+
+    function updateLatLon(init, latitude,longitude, author, place_name, area) {
         var lat = latitude;
         var lng = longitude;
         var newLatLng = new L.latLng(lat, lng);
         marker.setLatLng(newLatLng);
+        let popupContent = "";
+        if(init){
+            popupContent = author + "<br />Latitude : " + latitude + "<br />Longitude : " + longitude;
+        }
+        else
+        {
+            popupContent = author + " - " + place_name + "<br />Area : " + area + "<br />Latitude : " + latitude + "<br />Longitude : " + longitude;
+        }
+        marker.bindPopup(popupContent).openPopup();
         globMap.flyTo(newLatLng, 5)
     }
 </script>
