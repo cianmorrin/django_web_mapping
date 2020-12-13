@@ -6,7 +6,7 @@
 </head>
 <div class="container">
     <div class="content-section">
-        <!-- form for the selection -->
+        <!-- form for the selection of airports and the date -->
         <form method="POST" >
             {% csrf_token %}
             <div class="form-group">
@@ -33,6 +33,7 @@
                 </div>
             </div>
         </form>
+        <!-- displaying origin and destination airport plus date -->
         <div class="container">
             <article class="media content-section">
                 <div class="media-body">
@@ -40,6 +41,7 @@
                 </div>
             </article>
         </div>
+        <!-- displays the quotes for the flights -->
         {% for quote in quotes %}
             <div class="container">
                 <article class="media content-section">

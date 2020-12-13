@@ -8,9 +8,11 @@
 <body>
     <script src="https://unpkg.com/flickity@2.0/dist/flickity.pkgd.min.js"></script>
     <div>
+        <!-- map for the home page -->
         <div>
             {% leaflet_map "maphome" callback="window.map_init_basic" %}
         </div>
+        <!-- carousel which displays user posts -->
         <div class="main-carousel">
             {% for post in posts %}
                 <div class="cell">
@@ -32,23 +34,27 @@
     </div>
 </body>
 <script>
+    {# jquery for the flickity carousel of user posts #}
     $(".main-carousel").flickity({
         cellAlign: 'left',
         wrapAround: true,
         freeScroll: true
     })
+
+    {# gets location of device #}
     function getPosition() {
         return new Promise((res, rej) => {
             navigator.geolocation.getCurrentPosition(res, rej);
         });
     }
-
+    {# map initaliser which also adds location of user when promise is returned#}
     function map_init_basic (map, options) {
         marker = L.marker([53.5, -8.5], 5).addTo(map);
         getPosition().then(pos => updateLatLon(true, pos.coords.latitude, pos.coords.longitude, "You are here!"));
         globMap = map;
     }
 
+    {# update the location of the marker, either of user location or the post location #}
     function updateLatLon(init, latitude,longitude, author, place_name, area) {
         var lat = latitude;
         var lng = longitude;

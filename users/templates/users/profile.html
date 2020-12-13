@@ -7,10 +7,12 @@
         <div class="content-section">
           <div class="media">
             <div class="media-body">
+                <!-- displays username and email -->
               <h2 class="account-heading">{{ user.username }}</h2>
               <p class="text-secondary">{{ user.email }}</p>
             </div>
           </div>
+            <!-- form to update username and email -->
          <form method="POST" enctype="multipart/form-data">
               {% csrf_token %}
               <fieldset class="form-group">
