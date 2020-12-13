@@ -28,9 +28,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'world/main.css' %}">
 
     {% if title %}
-        <title>WebMap {{ title }}</title>
+        <title>{{ title }} | Dream Holiday </title>
     {% else %}
-        <title>WebMap</title>
+        <title>Dream Holiday</title>
     {% endif %}
 
 </head>
@@ -65,6 +65,6 @@
     <main >
           {% block content %}{% endblock %}
     </main>
-    <footer class="site-footer"><div class="footer-bar">Cian Morrin AWM 2020</div></footer>
+{#    <footer class="site-footer"><div class="footer-bar">Cian Morrin AWM 2020</div></footer>#}
 </body>
 </html>

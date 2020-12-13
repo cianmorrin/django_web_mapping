@@ -8,7 +8,8 @@ from django.views.generic import (
 )
 from django.contrib.auth.decorators import login_required
 from .models import WorldBorder, Post, Flight
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin  # this is needed for class views, can't use login required
+from django.contrib.auth.mixins import LoginRequiredMixin, \
+    UserPassesTestMixin  # this is needed for class views, can't use login required
 from world.quotes import get_quote
 
 
@@ -39,6 +40,12 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        new_context_entry = "New Post"
+        context["title"] = new_context_entry
+        return context
 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -74,18 +81,30 @@ def flights(request):
     quotes = []
     prettystring = ''
     if request.method == 'POST':
-        loc_from = request.POST.get('airportin')
-        loc_to = request.POST.get('airportout')
+        loc_from_arr = request.POST.get('airportorigin')
+        print(loc_from_arr)
+        if loc_from_arr is None:
+            loc_from = ""
+        else:
+            loc_from = loc_from_arr.split(",")
+            loc_from = loc_from[0]
+
+        loc_to_arr = request.POST.get('airportdestination')
+        print(loc_to_arr)
+        if loc_to_arr is None:
+            loc_to = ""
+        else:
+            loc_to = loc_to_arr.split(",")
+            loc_to = loc_to[0]
+
         date = request.POST.get('date')
         prettystring, quotes = get_quote(loc_from, loc_to, date)
         if len(quotes) == 0:
             quotes.append('No flights for your choice')
     context = {
-            'airports': Flight.objects.all(),
-            'quotes': quotes,
-            'prettystring': prettystring,
-        }
+        'airports': Flight.objects.all(),
+        'quotes': quotes,
+        'prettystring': prettystring,
+        'title': 'Flights'
+    }
     return render(request, 'world/flights.html', context)
-
-
-
