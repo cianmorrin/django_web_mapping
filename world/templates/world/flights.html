@@ -44,8 +44,8 @@
     {% for quote in quotes %}
         <div class="container">
             <article class="media content-section">
-                <div class="media-body">
-                    <p> {{ quote }}</p>
+                <div class="media-body flights">
+                    <img id="plane-icon" src="{% static '/images/plane-icon.png' %}"><p id="flight-quotes"> {{ quote }}</p>
                 </div>
             </article>
         </div>
