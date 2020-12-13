@@ -41,6 +41,12 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        new_context_entry = "New Post"
+        context["title"] = new_context_entry
+        return context
+
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
@@ -99,5 +105,6 @@ def flights(request):
         'airports': Flight.objects.all(),
         'quotes': quotes,
         'prettystring': prettystring,
+        'title': 'Flights'
     }
     return render(request, 'world/flights.html', context)

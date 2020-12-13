@@ -6,23 +6,16 @@
     <head>
         {% leaflet_js %}
         {% leaflet_css %}
-        {% block head_title %}{% endblock %}
-        {% block extra_header %}
-            <style>
-                #map {width: 100%;height: 50vh;}
-            </style>
-        {% endblock %}
-
     </head>
     <div class="container">
     <div class="content-section">
     <form method="POST" >
         {% csrf_token %}
         <div class="form-group">
-            <h2>Make your dream holiday a reality</h2>
-            <legend class="border-bottom mb-4">Check flights now</legend>
+            <div id="flight-title"><h2>Make your dream holiday come true</h2><img class="sky-logo" src="{% static '/images/skyscanner.png' %}"></div>
+            <legend id="check-flights" class="border-bottom mb-4">Check flights now</legend>
 
-            <div id="flight-criteria">
+             <div id="flight-criteria">
 
              <select name="airportorigin" class="form-control-flight-form" onchange="updateLatLonOrigin(this.value)">
                  <option value="" selected disabled hidden>Choose origin</option>
@@ -30,28 +23,17 @@
                     <option value="{{ airport.airport_code }},{{ airport.airport_lat }},{{ airport.airport_lon }}">{{ airport }}</option>
                 {% endfor %}
             </select>
-
-
             <select name="airportdestination" class="form-control-flight-form" onchange="updateLatLonDest(this.value)">
                 <option value="" selected disabled hidden>Choose destination</option>
                 {% for airport in airports %}
                     <option value="{{ airport.airport_code }},{{ airport.airport_lat }},{{ airport.airport_lon }}">{{ airport }}</option>
                 {% endfor %}
             </select>
-
-
-
-                    <input type="date" id="datePicker" name="date" value="date">
-
-
-                    <button class="btn btn-outline-info" type="submit">Search flights</button>
-
+            <input type="date" id="datePicker" name="date" value="date">
+            <button class="btn btn-outline-info" type="submit">Search flights</button>
             </div>
         </div>
-
     </form>
-
-
     <div class="container">
         <article class="media content-section">
             <div class="media-body">
@@ -59,8 +41,6 @@
             </div>
         </article>
     </div>
-
-
     {% for quote in quotes %}
         <div class="container">
             <article class="media content-section">
@@ -70,18 +50,12 @@
             </article>
         </div>
     {% endfor %}
-
     <div>
-        {% leaflet_map "map" callback="window.map_init_basic" %}
+        {% leaflet_map "mapflight" callback="window.map_init_basic" %}
     </div>
     </div>
     </div>
     <script>
-
-        let HOST = location.protocol + "//" + location.host;
-        let locationMarker;
-        let circle;
-        let globMap;
 
         function map_init_basic (map, options) {
             marker = L.marker([53.5, -8.5], 5).addTo(map);
@@ -90,28 +64,26 @@
                 color: 'red',
                 weight: 3,
                 opacity: 0.5,
-                smoothFactor: 1
+                smoothFactor: 2
             });
             polyline.addTo(map);
             map.setZoom(1);
-            {#map.fitBounds(polyline.getBounds());#}
-
         }
 
         function updateLatLonOrigin(geo) {
-            var nameArr = geo.split(',');
-            var lon = nameArr[1];
-            var lat = nameArr[2];
-            var x = new L.latLng(lat, lon);
+            let nameArr = geo.split(',');
+            let lon = nameArr[1];
+            let lat = nameArr[2];
+            let x = new L.latLng(lat, lon);
             marker2.setLatLng(x);
             polyline.setLatLngs([marker._latlng, x]);
         }
 
         function updateLatLonDest(geo) {
-            var nameArr = geo.split(',');
-            var lon = nameArr[1];
-            var lat = nameArr[2];
-            var y = new L.latLng(lat, lon);
+            let nameArr = geo.split(',');
+            let lon = nameArr[1];
+            let lat = nameArr[2];
+            let y = new L.latLng(lat, lon);
             marker.setLatLng(y);
             polyline.setLatLngs([y,marker2._latlng]);
         }

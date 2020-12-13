@@ -49,19 +49,15 @@ def profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         if u_form.is_valid():
-            print('yes')
             u_form.save()
             messages.success(request, f'Your account has been updated!')
             return redirect('profile')
-        else:
-            print('no')
     else:
         u_form = UserUpdateForm(instance=request.user)
-        p_form = ProfileUpdateForm(instance=request.user.profile)
 
     context = {
         'u_form': u_form,
-        'p_form': p_form
+        'title': 'Profile'
     }
 
     return render(request, 'users/profile.html', context)

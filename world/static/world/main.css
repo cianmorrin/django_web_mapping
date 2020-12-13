@@ -30,10 +30,20 @@ ul {
   font-weight: 500;
 }
 
-#map {
+#maphome {
   width: 100%;
   height: 52vh;
+  margin-top: -1rem;
 }
+
+#mapflight {
+  width: 97%;
+  margin-top: -1rem;
+  height: 52vh;
+  margin-left: 15px;
+}
+
+
 
 .site-footer .footer-bar {
   position: fixed;
@@ -74,14 +84,14 @@ a.article-title:hover {
   height: 65px;
   width: 65px;
   margin-right: 16px;
-  -webkit-transition: -webkit-transform .8s ease-in-out;
-          transition:         transform .8s ease-in-out;
+  /*-webkit-transition: -webkit-transform .8s ease-in-out;*/
+  /*        transition:         transform .8s ease-in-out;*/
 }
 
-.article-img:hover {
-  -webkit-transform: rotate(270deg);
-          transform: rotate(270deg);
-}
+/*.article-img:hover {*/
+/*  -webkit-transform: rotate(270deg);*/
+/*          transform: rotate(270deg);*/
+/*}*/
 
 .article-metadata {
   padding-bottom: 1px;
@@ -160,9 +170,30 @@ a.article-title:hover {
   float: right;
 }
 
+.form-group {
+  margin-left: 5px;
+}
+
+.form-group #flight-title{
+  display: flex;
+  margin-left: 10px;
+}
+
+.form-group #check-flights{
+  margin-left: 10px;
+}
+
+.form-group .sky-logo {
+  height: 20px;
+  margin-top: 15px;
+  margin-left: 35%;
+}
+
+
 #flight-criteria {
   display: inline-flex;
 }
+
 
 #datePicker {
   line-height: inherit;
@@ -196,13 +227,31 @@ a.article-title:hover {
     width:100%
   }
 
-  #map {
+  #mapflight {
     width: 100%;
-    height: 47vh;
+    margin-top: -1rem;
+    height: 52vh;
+    margin-left: 0px;
   }
 
   #hol-reason {
     display: none;
+  }
+  .form-group {
+    margin-left: 5px;
+  }
+
+  .form-group #flight-title{
+    display: inline-block;
+  }
+
+  .form-group #check-flights{
+  }
+
+  .form-group .sky-logo {
+    height: 20px;
+    margin-top: 2px;
+    margin-left: 0%;
   }
 
   #flight-criteria {
@@ -228,9 +277,77 @@ a.article-title:hover {
   }
 
   #datePicker {
-    margin-top: 4px;
+    margin-top: 6px;
     margin-left: 0px;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
+
+}
+
+@media only screen and (max-width: 1024px) {
+  .cell {
+    width:100%
+  }
+
+  #map {
+    width: 100%;
+    height: 47vh;
+  }
+
+  #hol-reason {
+    display: none;
+  }
+  .form-group {
+    margin-left: 5px;
+  }
+
+  .form-group #flight-title{
+    display: inline-block;
+    margin-left: 10px;
+  }
+
+  .form-group #check-flights{
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+
+  .form-group .sky-logo {
+    height: 20px;
+    margin-top: 15px;
+    margin-left: 0%;
+}
+
+#flight-criteria {
+display: inline-block;
+}
+.form-control-flight-form{
+max-width: 100%;
+margin-left: 0px;
+display: block;
+width: 100%;
+height: calc(1.5em + .75rem + 2px);
+padding: .375rem .75rem;
+font-size: 1rem;
+font-weight: 400;
+line-height: 1.5;
+color: #495057;
+background-color: #fff;
+background-clip: padding-box;
+border: 1px solid #ced4da;
+border-radius: .25rem;
+transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+margin-bottom: 4px;
+}
+
+#datePicker {
+margin-top: 6px;
+margin-left: 0px;
+margin-bottom: 6px;
+}
+
+}
+
+@media only screen and (max-width: 1024px) {
+
 
 }
