@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -27,6 +26,7 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'world/main.css' %}">
 
+    <!-- if title is present on page display -->
     {% if title %}
         <title>{{ title }} | Dream Holiday </title>
     {% else %}
@@ -38,25 +38,27 @@
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
-          <a href="{% url 'world-home' %}"><img class="rounded-circle article-img" src="{% static '/images/globe-icon.png' %}"></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarToggle">
+            <a href="{% url 'world-home' %}"><img class="rounded-circle article-img" src="{% static '/images/globe-icon.png' %}"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Navbar Left Side -->
+            <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
               <a class="nav-item nav-link" href="{% url 'world-home' %}">Home</a>
               <a class="nav-item nav-link" href="{% url 'world-flights' %}">Flights</a>
             </div>
-            <!-- Navbar Right Side -->
+             <!-- Navbar Right Side -->
              <div class="navbar-nav">
-              {% if user.is_authenticated %}
-                  <a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
-                  <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+             <!-- Navbar content changes if user is logged in -->
+             {% if user.is_authenticated %}
+                <a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
+                <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
                 <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
-              {% else %}
+             {% else %}
                 <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
                 <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
-              {% endif %}
+            {% endif %}
             </div>
           </div>
         </div>
@@ -65,6 +67,5 @@
     <main >
           {% block content %}{% endblock %}
     </main>
-{#    <footer class="site-footer"><div class="footer-bar">Cian Morrin AWM 2020</div></footer>#}
 </body>
 </html>

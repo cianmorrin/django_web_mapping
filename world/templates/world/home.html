@@ -1,32 +1,19 @@
 {% extends "world/base.html" %}
-{% block content %}
-    {% load leaflet_tags %}
-    {% load static %}
-    {% load i18n %}
-    {% load crispy_forms_tags %}
-    {% load crispy_forms_filters %}
-    <head>
-        {% leaflet_js %}
-        {% leaflet_css %}
-        {% block head_title %}{% endblock %}
-        {% block extra_header %}
-
-        {% endblock %}
-        <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-
-    </head>
-    <body>
+{% block content %}{% load leaflet_tags %}{% load static %}{% load i18n %}{% load crispy_forms_tags %}{% load crispy_forms_filters %}
+<head>
+    {% leaflet_js %}
+    {% leaflet_css %}
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+</head>
+<body>
     <script src="https://unpkg.com/flickity@2.0/dist/flickity.pkgd.min.js"></script>
-
-    {% block body_content %}
-
+    <div>
         <div>
-        <div>
-        {% leaflet_map "maphome" callback="window.map_init_basic" %}
+            {% leaflet_map "maphome" callback="window.map_init_basic" %}
         </div>
-            <div class="main-carousel">
-                {% for post in posts %}
-                    <div class="cell">
+        <div class="main-carousel">
+            {% for post in posts %}
+                <div class="cell">
                     <article class="media content-section">
                         <div class="media-body">
                             <div class="article-metadata">
@@ -39,71 +26,29 @@
                             <button class="btn btn-outline-info" onclick="updateLatLon('{{ post.dream_holiday.lat }}', '{{ post.dream_holiday.lon }}')">View On Map</button>
                         </div>
                     </article>
-                    </div>
-                {% endfor %}
-            </div>
+                </div>
+            {% endfor %}
         </div>
-    {% endblock %}
-        {% block extra_footer %}
-
-            <script>
-                $(".main-carousel").flickity({
-                    cellAlign: 'left',
-                    wrapAround: true,
-                    freeScroll: true
-                })
-            </script>
-            </body>
     </div>
-
-
-
-
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
-            <div class="toast-header">
-                <strong class="mr-auto">AWM2021</strong>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body"></div>
-        </div>
-
-        <script>
-
-            $("#body_div").css({"top": $(".site-header").height() + 10, "position": "absolute"});
-                $(".toast").css({
-                    "top": ($(document).height() / 5),
-                    "left": ($(document).width() / 5),
-                    "position": "fixed",
-                    "z-index": 2000
-                });
-        </script>
-
-    <script>
-
-        let HOST = location.protocol + "//" + location.host;
-        let locationMarker;
-        let circle;
-
-        let globMap;
-        function map_init_basic (map, options) {
-            marker = L.marker([53.5, -8.5], 5).addTo(map);
-            globMap = map;
-        }
-
-
-        function updateLatLon(latitude,longitude) {
-            var lat = latitude;
-            var lng = longitude;
-            var newLatLng = new L.latLng(lat, lng);
-            marker.setLatLng(newLatLng);
-            globMap.flyTo(newLatLng, 5)
-        }
-
-
-    </script>
-{% endblock %}
+</body>
+<script>
+    $(".main-carousel").flickity({
+        cellAlign: 'left',
+        wrapAround: true,
+        freeScroll: true
+    })
+    function map_init_basic (map, options) {
+        marker = L.marker([53.5, -8.5], 5).addTo(map);
+        globMap = map;
+    }
+    function updateLatLon(latitude,longitude) {
+        var lat = latitude;
+        var lng = longitude;
+        var newLatLng = new L.latLng(lat, lng);
+        marker.setLatLng(newLatLng);
+        globMap.flyTo(newLatLng, 5)
+    }
+</script>
 {% endblock content %}
 
 
